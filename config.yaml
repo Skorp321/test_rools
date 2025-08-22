@@ -1,0 +1,18 @@
+credentials:
+  usernames:
+    admin:
+      email: admin@example.com
+      name: Администратор
+      password: $2b$12$LRlQBce7RWaTR31CrCW.s.AxdNySlDro3M/UiXszm2mppucAJgtc6 # admin123
+      role: admin
+    user:
+      email: customer@example.com
+      name: Клиент
+      password: $2b$12$dslBcLy6AGmYv4mcLQSvDOHnLU/xpo70Dlr.a3LpxA5jQ7ffF0vgy # user123
+      role: user
+cookie:
+  expiry_days: 0.001  # Очень короткий срок жизни cookie (около 1.5 минут)
+  key: superstrongkey
+  name: demo_cookie
+
+
