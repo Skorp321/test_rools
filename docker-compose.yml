@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: aut_str_postgres
+    environment:
+      POSTGRES_DB: aut_str_db
+      POSTGRES_USER: aut_str_user
+      POSTGRES_PASSWORD: aut_str_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aut_str_user -d aut_str_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

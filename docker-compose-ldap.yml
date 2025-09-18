@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  ldap:
+    image: osixia/openldap:1.5.0
+    container_name: ldap-server
+    environment:
+      LDAP_ORGANISATION: "Test Company"
+      LDAP_DOMAIN: "test.local"
+      LDAP_ADMIN_PASSWORD: "admin"
+      LDAP_CONFIG_PASSWORD: "config"
+      LDAP_READONLY_USER: "true"
+      LDAP_READONLY_USER_USERNAME: "readonly"
+      LDAP_READONLY_USER_PASSWORD: "readonly"
+    ports:
+      - "389:389"
+      - "636:636"
+    volumes:
+      - ./ldap_data:/var/lib/ldap
+      - ./ldap_config:/etc/ldap/slapd.d
+      - ./init-structure.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/01-init-structure.ldif
+      - ./init-users.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/02-init-users.ldif
+    command: --copy-service --loglevel debug
+
+  phpldapadmin:
+    image: osixia/phpldapadmin:0.9.0
+    container_name: ldap-admin
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "ldap"
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+      - "8080:80"
+    depends_on:
+      - ldap
