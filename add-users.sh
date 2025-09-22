@@ -63,3 +63,5 @@ userPassword: password
 EOF
 
 echo "Пользователи добавлены в LDAP сервер!"
+
+

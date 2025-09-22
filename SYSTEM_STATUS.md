@@ -106,3 +106,5 @@ CREATE INDEX idx_unauthorized_login_attempts_ip ON unauthorized_login_attempts(i
 **Дата развертывания**: 2025-09-17  
 **Статус**: ✅ Работает  
 **Версия**: 1.0
+
+

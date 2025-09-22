@@ -51,3 +51,5 @@ if __name__ == "__main__":
     print("🔍 Тестирование подключения к LDAP серверу...")
     success = test_ldap_connection()
     sys.exit(0 if success else 1)
+
+
